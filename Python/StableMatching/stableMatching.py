@@ -7,19 +7,17 @@ def galeShapley(hospitals: List[Hospital], candidates: List[Candidate]) -> Dict[
 
     # Initialize totalCount representing the total number of candidate list of all Hospital objects
     totalCount: int = 0
+    # Initialize offerAccepted dictionaty per hospital name
+    offerAccepted: Dict[str, bool] = {}
     
     for hospital in hospitals:
         totalCount += len(hospital.preferredCandidates)
+        offerAccepted[hospital.name] = False
 
     # Initialize result dictionary per candidate name
     result: Dict[str,str] = {}
     for candidate in candidates:
         result[candidate.name] = ''
-
-    # Initialize offerAccepted dictionaty per hospital name
-    offerAccepted: Dict[str, bool] = {}
-    for hospital in hospitals:
-         offerAccepted[hospital.name] = False
 
     # start the loop
     while totalCount > 0:
@@ -34,7 +32,7 @@ def galeShapley(hospitals: List[Hospital], candidates: List[Candidate]) -> Dict[
 
                 # get the top preferred candidate of the hospital and remove from the list
                 preferredCandidateName: str = hospital.preferredCandidates.pop(0)
-                # get the preferred Candidate 
+                # get the preferred Candidate from the list of Candidate objects
                 preferredCandidate: Candidate = next((obj for obj in candidates if obj.name == preferredCandidateName ), None)
                 # get the tentative hospital name offer held by preferred Candidate ( returns '' if no offers yet )
                 tentativeHospitalName: str = result[preferredCandidateName]
