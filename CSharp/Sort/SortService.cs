@@ -4,6 +4,11 @@ namespace Sort
 {
     public class SortService
     {
+        /// <summary>
+        /// This function was generated using Github Copilot
+        /// </summary>
+        /// <param name="array"></param>
+        /// <returns></returns>
         public int[] InsertionSort(int[] array)
         {
             for (int i = 1; i < array.Length; i++)
